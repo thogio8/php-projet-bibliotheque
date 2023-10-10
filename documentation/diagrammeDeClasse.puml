@@ -1,27 +1,49 @@
 @startuml
-'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+abstract class "Média" as M{
+    # titre : chaine
+    # duréeEmprunt : entier
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+class "Livre" as L{
+    - isbn : chaine
+    - auteur : chaine
+    - nbPages : entier
 }
+
+class "Blu-Ray" as BR{
+    - réalisateur : chaine
+    - durée : chaine
+    - anneeSortie : chaine
+}
+
+class "Magazine" as Ma{
+    - numéroMagazine : entier
+    - datePublication : date
+}
+
+class "Adhérent" as A{
+    - numeroAdherent : chaine
+    - prenom : chaine
+    - nom : chaine
+    - email : chaine
+    - dateAdhésion : date
+    - genererNumero() : chaine
+}
+
+class "Emprunt" as E{
+    - numéroEmprunt : entier
+    - dateEmprunt : date
+    - dateRetourEstimée : date
+    - dateRetourReel : date
+}
+
+M <|-- L
+M <|-- BR
+M <|-- Ma
+M "1..1" <-- "              0..*"E : est emprunté >
+A "1..1" <-- "0..*"E : emprunte >
+
+
 
 @enduml
