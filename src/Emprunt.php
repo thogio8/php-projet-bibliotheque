@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+require "vendor/autoload.php";
 
 class Emprunt
 {
@@ -15,6 +16,22 @@ class Emprunt
     public function __construct()
     {
 
+    }
+
+    public function enCours(): bool
+    {
+        if (isset($this->dateRetourReel)) {
+            return false;
+        }
+        return true;
+    }
+
+    public function estEnRetard(): bool
+    {
+        if ($this->enCours() && $this->dateRetourEstimee < new \DateTime()) {
+            return true;
+        }
+        return false;
     }
 
     /**
