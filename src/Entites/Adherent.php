@@ -1,14 +1,28 @@
 <?php
 
-namespace App;
+namespace App\Entites;
 
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+
+#[Entity]
 class Adherent
 {
+    #[Id]
+    #[Column(type : "integer")]
+    #[GeneratedValue]
     private int $id;
+    #[Column(type: "string", length: 9)]
     private string $numeroAdherent;
+    #[Column(type: "string", length: 80)]
     private string $prenom;
+    #[Column(type: "string", length: 80)]
     private string $nom;
+    #[Column(type: "string", length: 150)]
     private string $email;
+    #[Column(type: "datetime")]
     private \DateTime $dateAdhesion;
 
     public function __construct (){

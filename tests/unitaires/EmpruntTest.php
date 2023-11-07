@@ -4,7 +4,7 @@ namespace App\Tests\unitaires;
 
 require "vendor/autoload.php";
 
-use App\Emprunt;
+use App\Entites\Emprunt;
 use PHPUnit\Framework\TestCase;
 
 class EmpruntTest extends TestCase{

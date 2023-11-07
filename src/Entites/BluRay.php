@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Entites;
 
 class BluRay extends Media
 {

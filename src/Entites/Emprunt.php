@@ -1,6 +1,7 @@
 <?php
 
-namespace App;
+namespace App\Entites;
+
 require "vendor/autoload.php";
 
 class Emprunt
