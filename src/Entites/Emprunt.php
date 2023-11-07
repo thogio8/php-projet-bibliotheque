@@ -29,7 +29,7 @@ class Emprunt
 
     public function estEnRetard(): bool
     {
-        if ($this->enCours() && $this->dateRetourEstimee < new \DateTime()) {
+        if ($this->enCours() && $this->dateRetourEstimee <= new \DateTime()) {
             return true;
         }
         return false;
@@ -146,6 +146,4 @@ class Emprunt
     {
         $this->media = $media;
     }
-
-
 }

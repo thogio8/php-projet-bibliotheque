@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><database name="db_bibliotheque" schema="db_bibliotheque" type="MariaDB - 10.4.28-MariaDB">
+   <tables>
+      <table catalog="db_bibliotheque" name="adherent" numRows="2" remarks="" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="numeroAdherent" nullable="false" remarks="" size="9" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="prenom" nullable="false" remarks="" size="80" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="nom" nullable="false" remarks="" size="80" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="email" nullable="false" remarks="" size="150" type="VARCHAR" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="dateAdhesion" nullable="false" remarks="" size="19" type="DATETIME" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+   </tables>
+</database>

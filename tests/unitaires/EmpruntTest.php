@@ -11,7 +11,7 @@ class EmpruntTest extends TestCase{
     /**
      * @test
      */
-    public function estEnCours_SiDateNonPrecisee_EgalAVrai(){
+    public function estEnCours_DateRetourNonPrecisee_Vrai(){
         $emprunt = new Emprunt();
         $this->assertTrue($emprunt->enCours());
     }
@@ -19,7 +19,7 @@ class EmpruntTest extends TestCase{
     /**
      * @test
      */
-    public function estPasEnCours_SiDatePrecisee_EgalAFaux(){
+    public function estEnCours_DateRetourPrecisee_Faux(){
         $emprunt = new Emprunt();
         $emprunt->setDateRetourReel(new \DateTime());
         $this->assertFalse($emprunt->enCours());
@@ -28,7 +28,7 @@ class EmpruntTest extends TestCase{
     /**
      * @test
      */
-    public function estEnRetard_SiEncoreEnCoursEtDateEstimeeSuperieurADateDuJour_EgalAVrai(){
+    public function estEnRetard_DateRetourEstimeeInferieurOuEgaleADateDuJour_Vrai(){
         $emprunt = new Emprunt();
         $emprunt->setDateRetourEstimee(\DateTime::createFromFormat("d/m/Y", "10/10/2023"));
         $this->assertTrue($emprunt->estEnRetard());
@@ -37,9 +37,9 @@ class EmpruntTest extends TestCase{
     /**
      * @test
      */
-    public function estPasEnRetard_SiPlusEnCoursEtDateEstimeeInferieurADateDuJour_EgalAFaux(){
+    public function estEnRetard_DateRetourEstimeeSuperieurADateDuJour_Faux(){
         $emprunt = new Emprunt();
-        $emprunt->setDateRetourEstimee(\DateTime::createFromFormat("d/m/Y", "15/10/2023"));
+        $emprunt->setDateRetourEstimee(\DateTime::createFromFormat("d/m/Y", "15/10/2050"));
         $this->assertFalse($emprunt->estEnRetard());
     }
 }

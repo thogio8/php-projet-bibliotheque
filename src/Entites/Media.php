@@ -36,13 +36,6 @@ abstract class Media
         return $this->dureeEmprunt;
     }
 
-    /**
-     * @param int $id
-     */
-    public function setId(int $id): void
-    {
-        $this->id = $id;
-    }
 
     /**
      * @param string $titre
@@ -52,11 +45,4 @@ abstract class Media
         $this->titre = $titre;
     }
 
-    /**
-     * @param int $dureeEmprunt
-     */
-    public function setDureeEmprunt(int $dureeEmprunt): void
-    {
-        $this->dureeEmprunt = $dureeEmprunt;
-    }
 }

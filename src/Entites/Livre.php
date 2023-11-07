@@ -11,6 +11,7 @@ class Livre extends Media
     public function __construct()
     {
         parent::__construct();
+        $this->dureeEmprunt = 21;
     }
 
     /**

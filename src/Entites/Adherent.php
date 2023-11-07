@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Table;
 
 #[Entity]
 class Adherent
@@ -43,13 +44,6 @@ class Adherent
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     */
-    public function setId(int $id): void
-    {
-        $this->id = $id;
-    }
 
     /**
      * @return string
