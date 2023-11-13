@@ -12,7 +12,8 @@
         "doctrine/dbal": "^3.7",
         "symfony/yaml": "^6.3",
         "symfony/cache": "^6.3",
-        "vlucas/phpdotenv": "^5.5"
+        "vlucas/phpdotenv": "^5.5",
+        "symfony/validator": "^6.3"
     },
     "autoload": {
         "psr-4": {
@@ -24,8 +25,13 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "Tests\\": "tests/"
         }
     },
 
+    "scripts": {
+        "unit-test": "./vendor/bin/phpunit --testsuite Unit --testdox --colors=always",
+        "it-test": "./vendor/bin/phpunit --testsuite Integration --testdox --colors=always",
+        "all-tests": "./vendor/bin/phpunit --testdox --colors=always"
+    }
 }

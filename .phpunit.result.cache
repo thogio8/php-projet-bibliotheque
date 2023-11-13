@@ -1,0 +1,1 @@
+{"version":1,"defects":[],"times":{"App\\Tests\\unitaires\\GenererNumeroTest::genererNumero_NumeroGenereContient9Caracteres_Vrai":0.003,"App\\Tests\\unitaires\\GenererNumeroTest::genererNumero_NumeroGenereCommencantParAD_Vrai":0,"App\\Tests\\unitaires\\GenererNumeroTest::genererNumero_PartieNumeriqueNumeroGenereComposeUniquementDeChiffres_Vrai":0}}

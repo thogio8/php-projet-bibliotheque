@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Table;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[Entity]
 class Adherent
@@ -18,6 +19,7 @@ class Adherent
     #[Column(type: "string", length: 9)]
     private string $numeroAdherent;
     #[Column(type: "string", length: 80)]
+
     private string $prenom;
     #[Column(type: "string", length: 80)]
     private string $nom;

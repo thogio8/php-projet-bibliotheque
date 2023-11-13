@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\unitaires;
+namespace Tests\unitaires;
 
 require "vendor/autoload.php";
 
