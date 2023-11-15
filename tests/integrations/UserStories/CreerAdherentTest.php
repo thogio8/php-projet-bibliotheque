@@ -140,7 +140,7 @@ class CreerAdherentTest extends TestCase{
 
     #[test]
     public function creerAdherent_EmailNonValablePremierePartieManquante_Vrai(){
-        $requete = new CreerAdherentRequete('Thomas', 'Gioana', '@test.fr ');
+        $requete = new CreerAdherentRequete('Thomas', 'Gioana', '@test.fr');
         $generateur = new GenerateurNumeroAdherent();
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
         $creerAdherent = new CreerAdherent($this->entityManager, $generateur, $validator);
@@ -153,7 +153,7 @@ class CreerAdherentTest extends TestCase{
 
     #[test]
     public function creerAdherent_EmailNonValableDeuxiemePartieManquante_Vrai(){
-        $requete = new CreerAdherentRequete('Thomas', 'Gioana', '@test.fr ');
+        $requete = new CreerAdherentRequete('Thomas', 'Gioana', 'thomas.gioana@');
         $generateur = new GenerateurNumeroAdherent();
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
         $creerAdherent = new CreerAdherent($this->entityManager, $generateur, $validator);
