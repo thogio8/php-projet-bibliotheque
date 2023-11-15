@@ -66,11 +66,9 @@ class CreerAdherentTest extends TestCase{
         $generateur = new GenerateurNumeroAdherent();
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
         $creerAdherent = new CreerAdherent($this->entityManager, $generateur, $validator);
-        try{
-            $creerAdherent->execute($requete);
-        }catch (\Exception $e){
-            $this->assertEquals("Le prénom est obligatoire", $e->getMessage());
-        }
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Le prénom est obligatoire.");
+        $creerAdherent->execute($requete);
     }
 
     #[test]
@@ -79,11 +77,9 @@ class CreerAdherentTest extends TestCase{
         $generateur = new GenerateurNumeroAdherent();
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
         $creerAdherent = new CreerAdherent($this->entityManager, $generateur, $validator);
-        try{
-            $creerAdherent->execute($requete);
-        }catch (\Exception $e){
-            $this->assertEquals("Le nom est obligatoire", $e->getMessage());
-        }
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Le nom est obligatoire.");
+        $creerAdherent->execute($requete);
     }
 
     #[test]
@@ -92,11 +88,9 @@ class CreerAdherentTest extends TestCase{
         $generateur = new GenerateurNumeroAdherent();
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
         $creerAdherent = new CreerAdherent($this->entityManager, $generateur, $validator);
-        try{
-            $creerAdherent->execute($requete);
-        }catch (\Exception $e){
-            $this->assertEquals("Le mail est obligatoire", $e->getMessage());
-        }
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Le mail est obligatoire.");
+        $creerAdherent->execute($requete);
     }
 
     #[test]
@@ -105,11 +99,9 @@ class CreerAdherentTest extends TestCase{
         $generateur = new GenerateurNumeroAdherent();
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
         $creerAdherent = new CreerAdherent($this->entityManager, $generateur, $validator);
-        try{
-            $creerAdherent->execute($requete);
-        }catch (\Exception $e){
-            $this->assertEquals("Le mail n'est pas dans un format valide", $e->getMessage());
-        }
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Le mail n'est pas dans un format valide");
+        $creerAdherent->execute($requete);
     }
 
     #[test]
@@ -118,11 +110,9 @@ class CreerAdherentTest extends TestCase{
         $generateur = new GenerateurNumeroAdherent();
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
         $creerAdherent = new CreerAdherent($this->entityManager, $generateur, $validator);
-        try{
-            $creerAdherent->execute($requete);
-        }catch (\Exception $e){
-            $this->assertEquals("Le mail n'est pas dans un format valide", $e->getMessage());
-        }
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Le mail n'est pas dans un format valide");
+        $creerAdherent->execute($requete);
     }
 
     #[test]
@@ -131,11 +121,9 @@ class CreerAdherentTest extends TestCase{
         $generateur = new GenerateurNumeroAdherent();
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
         $creerAdherent = new CreerAdherent($this->entityManager, $generateur, $validator);
-        try{
-            $creerAdherent->execute($requete);
-        }catch (\Exception $e){
-            $this->assertEquals("Le mail n'est pas dans un format valide", $e->getMessage());
-        }
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Le mail n'est pas dans un format valide");
+        $creerAdherent->execute($requete);
     }
 
     #[test]
@@ -144,11 +132,9 @@ class CreerAdherentTest extends TestCase{
         $generateur = new GenerateurNumeroAdherent();
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
         $creerAdherent = new CreerAdherent($this->entityManager, $generateur, $validator);
-        try{
-            $creerAdherent->execute($requete);
-        }catch (\Exception $e){
-            $this->assertEquals("Le mail n'est pas dans un format valide", $e->getMessage());
-        }
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Le mail n'est pas dans un format valide");
+        $creerAdherent->execute($requete);
     }
 
     #[test]
@@ -157,10 +143,8 @@ class CreerAdherentTest extends TestCase{
         $generateur = new GenerateurNumeroAdherent();
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
         $creerAdherent = new CreerAdherent($this->entityManager, $generateur, $validator);
-        try{
-            $creerAdherent->execute($requete);
-        }catch (\Exception $e){
-            $this->assertEquals("Le mail n'est pas dans un format valide", $e->getMessage());
-        }
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Le mail n'est pas dans un format valide");
+        $creerAdherent->execute($requete);
     }
 }
