@@ -20,7 +20,7 @@ class CreerAdherentRequete
         message: "Le mail est obligatoire"
     )]
     #[Assert\Email(
-        message: "Le mail {{ value }} est incorrect"
+        message: "Le mail n'est pas dans un format valide"
     )]
     public string $email;
 
