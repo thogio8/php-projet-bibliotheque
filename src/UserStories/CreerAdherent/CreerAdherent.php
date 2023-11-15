@@ -30,7 +30,7 @@ class CreerAdherent{
         $erreurs = $this->validator->validate($requete);
         $e = "";
         foreach($erreurs as $erreur){
-            $e .= $erreur->getMessage();
+            $e .= $erreur->getMessage().".\n";
         }
         if($e != "") {
             throw new \Exception($e);
