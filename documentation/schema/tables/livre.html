@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>adherent - db_bibliotheque.db_bibliotheque</title>
+        <title>livre - db_bibliotheque.db_bibliotheque</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="icon" type="image/png" sizes="16x16" href="../favicon.png">
@@ -73,7 +73,7 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>adherent</h1><p><span id="recordNumber">0</span> rows</p><br />
+                    <h1>livre</h1><p><span id="recordNumber">0</span> rows</p><br />
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -113,7 +113,7 @@
                                     <td>INT</td>
                                     <td>10</td>
                                     <td title=''></td>
-                                    <td title='Automatically updated by the database'>√</td>
+                                    <td title=''></td>
                                     <td>null</td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
@@ -121,14 +121,19 @@
                                     </td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="livre.id references media.id via FK_6DA2609DBF396750"><a href='media.html'>media</a><span class='relatedKey'>.id</span></td>
+                                                <td class="constraint detail">FK_6DA2609DBF396750</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                            </tr>
                                         </table>
                                     </td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="numeroAdherent">numeroAdherent</span></td>
+                                    <td><span id="isbn">isbn</span></td>
                                     <td>VARCHAR</td>
-                                    <td>9</td>
+                                    <td>20</td>
                                     <td title=''></td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -143,24 +148,7 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="prenom">prenom</span></td>
-                                    <td>VARCHAR</td>
-                                    <td>80</td>
-                                    <td title=''></td>
-                                    <td title=''></td>
-                                    <td>null</td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><span id="nom">nom</span></td>
+                                    <td><span id="auteur">auteur</span></td>
                                     <td>VARCHAR</td>
                                     <td>80</td>
                                     <td title=''></td>
@@ -177,26 +165,9 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="email">email</span></td>
-                                    <td>VARCHAR</td>
-                                    <td>150</td>
-                                    <td title=''></td>
-                                    <td title=''></td>
-                                    <td>null</td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><span id="dateAdhesion">dateAdhesion</span></td>
-                                    <td>DATETIME</td>
-                                    <td>19</td>
+                                    <td><span id="nbPages">nbPages</span></td>
+                                    <td>INT</td>
+                                    <td>10</td>
                                     <td title=''></td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -268,7 +239,7 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         
-                                        <a name='diagram'><object type="image/svg+xml" id="oneDegreeImg" data="../diagrams/tables/adherent.1degree.svg" class="diagram" border="0" align="left"></object></a>
+                                        <a name='diagram'><object type="image/svg+xml" id="oneDegreeImg" data="../diagrams/tables/livre.1degree.svg" class="diagram" border="0" align="left"></object></a>
                                     </div>
                                 </div>
                             </div>

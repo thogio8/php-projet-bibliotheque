@@ -2,11 +2,17 @@
 
 namespace App\Entites;
 
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
 class Livre extends Media
 {
+    #[ORM\Column(type : "string", length: 20)]
     private string $isbn;
+    #[ORM\Column(type : "string", length: 80)]
     private string $auteur;
-    private int $nbPages;
+    #[ORM\Column(type : "integer")]
+    private ?int $nbPages;
 
     public function __construct()
     {
@@ -14,6 +20,9 @@ class Livre extends Media
         $this->dureeEmprunt = 21;
     }
 
+    /**
+     * @param int $dureeEmprunt
+     */
     /**
      * @return string
      */

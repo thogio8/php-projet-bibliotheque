@@ -3,6 +3,7 @@
 abstract class "Média" as M{
     # titre : chaine
     # duréeEmprunt : entier
+    # statut : chaine
 }
 
 class "Livre" as L{

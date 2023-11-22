@@ -1,6 +1,5 @@
 <?php
 
-namespace Tests\integrations\UserStories;
 
 use App\Entites\Adherent;
 use App\Services\GenerateurNumeroAdherent;
@@ -16,7 +15,6 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Validator\ValidatorBuilder;
-use function PHPUnit\Framework\assertEquals;
 
 class CreerAdherentTest extends TestCase{
     protected EntityManagerInterface $entityManager;
@@ -35,10 +33,9 @@ class CreerAdherentTest extends TestCase{
             'path'=>':memory:'
         ], $config);
 
-        // Création de l'entity manager, le générateur et le validateur
+        // Création de l'entity manager et le générateur
         $this->entityManager = new EntityManager($connection, $config);
         $this->generateur = new GenerateurNumeroAdherent();
-        $this->validateur = Validation::createValidator();
 
         // Création du schema de la base de données
         $schemaTool = new SchemaTool($this->entityManager);

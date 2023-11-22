@@ -1,24 +1,3 @@
-<?php
-
-use App\Services\GenerateurNumeroAdherent;
-use App\UserStories\CreerAdherent\CreerAdherent;
-use App\UserStories\CreerAdherent\CreerAdherentRequete;
-use Symfony\Component\Validator\ValidatorBuilder;
-
-require "../bootstrap.php";
-
-if(isset($_POST)){
-    $requete = new CreerAdherentRequete($_POST["name"], $_POST["surname"], $_POST["email"]);
-    $generateur = new GenerateurNumeroAdherent();
-    $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
-    $creerAdherent = new CreerAdherent($entityManager, $generateur, $validator);
-    try{
-        $creerAdherent->execute($requete);
-    }catch (Exception $e){
-        echo $e->getMessage();
-    }
-}
-?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -27,30 +6,12 @@ if(isset($_POST)){
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style/style.css">
-    <title>Ajouter un adhérent</title>
+    <title>Bibliothèque</title>
 </head>
 <body>
-<h1 id="titre">Ajouter un adhérent</h1>
-<form method="post" class="form">
-    <div class="form-field">
-        <label for="surname">Saisissez votre nom :</label>
-        <input type="text" name="surname" id="surname">
-    </div>
-
-    <div class="form-field">
-        <label for="name">Saisissez votre prénom :</label>
-        <input type="text" name="name" id="name">
-    </div>
-
-    <div class="form-field">
-        <label for="email">Saisissez votre email :</label>
-        <input type="text" name="email" id="email">
-    </div>
-
-    <div class="submit">
-        <input type="submit" value="Ajouter l'adhérent">
-    </div>
-</form>
-
+<h1 id="titre">Bibliothèque</h1>
+<a href="adherent.php">Ajouter un adherent</a>
+<a href="livre.php">Ajouter un livre</a>
+<a href="magazine.php">Ajouter un magazine</a>
 </body>
 </html>

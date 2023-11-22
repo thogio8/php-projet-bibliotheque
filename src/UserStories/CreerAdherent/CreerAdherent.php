@@ -6,7 +6,6 @@ use App\Entites\Adherent;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Services\GenerateurNumeroAdherent;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use function PHPUnit\Framework\throwException;
 
 class CreerAdherent{
     private EntityManagerInterface $entityManager;
@@ -25,6 +24,10 @@ class CreerAdherent{
         $this->validator = $validator;
     }
 
+    /**
+     * @throws \Exception
+     * @return bool
+     */
     public function execute(CreerAdherentRequete $requete) : bool{
         // Valider les données en entrées (de la requête)
         $erreurs = $this->validator->validate($requete);
