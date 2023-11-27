@@ -2,10 +2,15 @@
 
 namespace App\Entites;
 
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Collection;
+
+
+#[ORM\Entity]
 class Magazine extends Media
 {
+    #[ORM\Column(type: "integer")]
     private int $numeroMagazine;
-    private \DateTime $datePublication;
 
     public function __construct()
     {

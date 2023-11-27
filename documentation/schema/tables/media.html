@@ -73,7 +73,7 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>media</h1><p><span id="recordNumber">0</span> rows</p><br />
+                    <h1>media</h1><p><span id="recordNumber">2</span> rows</p><br />
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -120,6 +120,11 @@
                                             <tr>
                                                 <td title="livre.id references media.id via FK_6DA2609DBF396750"><a href='livre.html'>livre</a><span class='relatedKey'>.id</span></td>
                                                 <td class="constraint detail">FK_6DA2609DBF396750</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="magazine.id references media.id via FK_CEFA4DB2BF396750"><a href='magazine.html'>magazine</a><span class='relatedKey'>.id</span></td>
+                                                <td class="constraint detail">FK_CEFA4DB2BF396750</td>
                                                 <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                         </table>

@@ -1,3 +1,4 @@
 adherent
+magazine
 livre
 media

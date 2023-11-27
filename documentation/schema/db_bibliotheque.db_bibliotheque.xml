@@ -12,7 +12,7 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
-      <table catalog="db_bibliotheque" name="livre" numRows="0" remarks="" type="TABLE">
+      <table catalog="db_bibliotheque" name="livre" numRows="1" remarks="" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
             <parent catalog="db_bibliotheque" column="id" foreignKey="FK_6DA2609DBF396750" implied="false" onDeleteCascade="true" table="media"/>
          </column>
@@ -24,9 +24,20 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
-      <table catalog="db_bibliotheque" name="media" numRows="0" remarks="" type="TABLE">
+      <table catalog="db_bibliotheque" name="magazine" numRows="1" remarks="" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
+            <parent catalog="db_bibliotheque" column="id" foreignKey="FK_CEFA4DB2BF396750" implied="false" onDeleteCascade="true" table="media"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="numeroMagazine" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table catalog="db_bibliotheque" name="media" numRows="2" remarks="" type="TABLE">
          <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT" typeCode="4">
             <child catalog="db_bibliotheque" column="id" foreignKey="FK_6DA2609DBF396750" implied="false" onDeleteCascade="true" table="livre"/>
+            <child catalog="db_bibliotheque" column="id" foreignKey="FK_CEFA4DB2BF396750" implied="false" onDeleteCascade="true" table="magazine"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="titre" nullable="false" remarks="" size="100" type="VARCHAR" typeCode="12"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="dureeEmprunt" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>

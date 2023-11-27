@@ -4,6 +4,7 @@ abstract class "Média" as M{
     # titre : chaine
     # duréeEmprunt : entier
     # statut : chaine
+    # dateCréation : chaine
 }
 
 class "Livre" as L{
@@ -20,7 +21,6 @@ class "Blu-Ray" as BR{
 
 class "Magazine" as Ma{
     - numéroMagazine : entier
-    - datePublication : date
 }
 
 class "Adhérent" as A{
