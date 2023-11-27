@@ -52,7 +52,10 @@ $app->command("bibliotheque:livre:create", function (SymfonyStyle $io) use ($ent
         if($nbPages === null){
             $io->error("Veuillez saisir le nombre de pages du livre");
         }
-    }while($nbPages === null);
+        if(!is_numeric($nbPages)){
+            $io->error("Le nombre de pages doit être un nombre.");
+        }
+    }while($nbPages === null || is_numeric($nbPages) != true);
 
     $requete = new CreerLivreRequete($titre, $isbn, $auteur, $dateCreation, $nbPages);
     $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
@@ -81,7 +84,10 @@ $app->command("bibliotheque:magazine:create", function (SymfonyStyle $io) use ($
         if($numMagazine === null){
             $io->error("Veuillez saisir le numéro du magazine");
         }
-    }while($numMagazine === null);
+        if(!is_numeric($numMagazine)){
+            $io->error("Le numero de magazine doit être un nombre.");
+        }
+    }while($numMagazine === null || is_numeric($numMagazine) != true);
 
     do {
         $dateCreation = $io->ask("Quand à été crée le magazine ?");
