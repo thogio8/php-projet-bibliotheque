@@ -24,50 +24,35 @@ $app->command("bibliotheque:livre:create", function (SymfonyStyle $io) use ($ent
         if($titre === null){
             $io->error("Veuillez saisir le titre du livre");
         }
-        if(gettype($titre) != "string"){
-            $io->error("Le titre doit être saisi sous forme d'une chaine de caractères.");
-        }
-    }while($titre === null || gettype($titre) != "string");
+    }while($titre === null);
 
     do {
         $isbn = $io->ask("Quel est l'ISBN du livre ?");
         if($isbn === null){
             $io->error("Veuillez saisir l'ISBN du livre");
         }
-        if(gettype($isbn) != "string"){
-            $io->error("L'ISBN doit être saisi sous forme d'une chaine de caractères.");
-        }
-    }while($isbn === null || gettype($isbn) != "string");
+    }while($isbn === null);
 
     do {
         $auteur = $io->ask("Qui est l'auteur du livre ?");
         if($auteur === null){
             $io->error("Veuillez saisir l'auteur du livre");
         }
-        if(gettype($auteur) != "string"){
-            $io->error("L'auteur doit être saisi sous forme d'une chaine de caractères.");
-        }
-    }while($auteur === null || gettype($auteur) != "string");
+    }while($auteur === null);
 
     do {
         $dateCreation = $io->ask("Quand à été crée le livre ?");
         if($dateCreation === null){
             $io->error("Veuillez saisir la date de création du livre");
         }
-        if(gettype($dateCreation) != "string"){
-            $io->error("La date de création doit être saisie sous forme d'une chaine de caractères.");
-        }
-    }while($dateCreation === null || gettype($dateCreation) != "string");
+    }while($dateCreation === null);
 
     do {
         $nbPages = $io->ask("Combien le livre fait-il de pages ?");
         if($nbPages === null){
             $io->error("Veuillez saisir le nombre de pages du livre");
         }
-        if(gettype($nbPages) != "integer"){
-            $io->error("Le nombre de pages doit être saisi sous forme d'un nombre entier.");
-        }
-    }while($nbPages === null || gettype($nbPages) != "integer");
+    }while($nbPages === null);
 
     $requete = new CreerLivreRequete($titre, $isbn, $auteur, $dateCreation, $nbPages);
     $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
@@ -89,30 +74,21 @@ $app->command("bibliotheque:magazine:create", function (SymfonyStyle $io) use ($
         if($titre === null){
             $io->error("Veuillez saisir le titre du magazine");
         }
-        if(gettype($titre) != "string"){
-            $io->error("Le titre doit être saisi sous forme d'une chaine de caractères.");
-        }
-    }while($titre === null || gettype($titre) != "string");
+    }while($titre === null);
 
     do {
         $numMagazine = $io->ask("Quel est le numéro du magazine ?");
         if($numMagazine === null){
             $io->error("Veuillez saisir le numéro du magazine");
         }
-        if(gettype($numMagazine) != "integer"){
-            $io->error("Le numéro du magazine doit être saisi sous forme d'un nombre entier.");
-        }
-    }while($numMagazine === null || gettype($numMagazine) != "integer");
+    }while($numMagazine === null);
 
     do {
         $dateCreation = $io->ask("Quand à été crée le magazine ?");
         if($dateCreation === null){
             $io->error("Veuillez saisir la date de création du magazine");
         }
-        if(gettype($dateCreation) != "string"){
-            $io->error("La date de création doit être saisi sous forme d'une chaine de caractères.");
-        }
-    }while($dateCreation === null || gettype($dateCreation) != "string");
+    }while($dateCreation === null);
 
     $requete = new CreerMagazineRequete($titre, $numMagazine, $dateCreation);
     $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();

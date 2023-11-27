@@ -47,7 +47,7 @@ class CreerMagazine
             throw new Exception("Le numéro de magazine est déjà lié à un autre magazine");
         }
 
-        // Créer le livre
+        // Créer le magazine
         $magazine = new Magazine();
         $magazine->setTitre($requete->titre);
         $magazine->setNumeroMagazine($requete->numeroMagazine);
