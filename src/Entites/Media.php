@@ -28,6 +28,8 @@ abstract class Media
     {
     }
 
+    abstract public function getType();
+
     /**
      * @param string $statut
      */
@@ -84,5 +86,23 @@ abstract class Media
     {
         $this->dateCreation = $dateCreation;
     }
+
+    /**
+     * @return string
+     */
+    public function getStatut(): string
+    {
+        return $this->statut;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateCreation(): string
+    {
+        return $this->dateCreation;
+    }
+
+
 
 }

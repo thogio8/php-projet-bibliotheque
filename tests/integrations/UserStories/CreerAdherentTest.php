@@ -69,7 +69,7 @@ class CreerAdherentTest extends TestCase{
     }
 
     #[test]
-    public function creerAdherent_NomNonRenseigne_Vrai(){
+    public function creerAdherent_NomNonRenseigne_Exception(){
         $requete = new CreerAdherentRequete('Thomas', '', 'thomas.gioana@tes.fr');
         $generateur = new GenerateurNumeroAdherent();
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();

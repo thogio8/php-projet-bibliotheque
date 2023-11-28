@@ -22,12 +22,15 @@ class ListeNouveauxMedias
     public function execute(): array
     {
         $repository = $this->entityManager->getRepository(Media::class);
-        $mediasRepo = $repository->findBy(["statut" => "Nouveau"]);
-        foreach($mediasRepo as $mediaRepo) {
-            $medias[] = implode('/',array_reverse(explode("/", $mediaRepo)));
+        $mediaRepo = $repository->findBy(["statut" => "Nouveau"]);
+        $medias = [];
+        foreach($mediaRepo as $media){
+            $medias[] = ["id" => $media->getId(), "titre" => $media->getTitre(), "statut" => $media->getStatut(), "dateCreation" => $media->getDateCreation(), "type" => $media->getType()];
         }
-        array_multisort($medias, SORT_DESC);
-        dump($medias);
+        usort($medias, function ($a, $b) {
+            return strtotime($b->getDateCreation()) - strtotime($a->getDateCreation());
+        });
+
         return $medias;
     }
 }

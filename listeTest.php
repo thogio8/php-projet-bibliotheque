@@ -7,4 +7,4 @@ require "bootstrap.php";
 
 $liste = new ListeNouveauxMedias($entityManager);
 
-$liste->execute();
+dump($liste->execute());

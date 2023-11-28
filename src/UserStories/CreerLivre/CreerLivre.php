@@ -3,16 +3,15 @@
 namespace App\UserStories\CreerLivre;
 
 use App\Entites\Livre;
+use App\Entites\StatutMedia;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use App\Services\Constantes;
 
 class CreerLivre
 {
     private EntityManagerInterface $entityManager;
     private ValidatorInterface $validator;
-    private Constantes $constantes;
 
     /**
      * @param EntityManagerInterface $entityManager
@@ -22,7 +21,6 @@ class CreerLivre
     {
         $this->entityManager = $entityManager;
         $this->validator = $validator;
-        $this->constantes = new Constantes();
     }
 
     /**
@@ -33,7 +31,7 @@ class CreerLivre
         $erreurs = $this->validator->validate($requete);
         $e = "";
         foreach($erreurs as $erreur){
-            $e .= $erreur->getMessage().".\n";
+            $e .= $erreur->getMessage()."\n";
         }
         if($e != ""){
             throw new Exception($e);
@@ -51,9 +49,9 @@ class CreerLivre
         $livre->setAuteur($requete->auteur);
         $livre->setIsbn($requete->isbn);
         $livre->setNbPages($requete->nbPages);
-        $livre->setDateCreation($requete->dateCreation);
+        $livre->setDateCreation((new \DateTime())->format('d/m/Y'));
         $livre->setDureeEmprunt($livre->getDureeEmprunt());
-        $livre->setStatut($this->constantes->_STATUT_NOUVEAU);
+        $livre->setStatut(StatutMedia::STATUT_NOUVEAU);
         $this->entityManager->persist($livre);
         $this->entityManager->flush();
         return true;

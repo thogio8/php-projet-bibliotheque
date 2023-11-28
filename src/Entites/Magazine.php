@@ -11,6 +11,8 @@ class Magazine extends Media
 {
     #[ORM\Column(type: "integer")]
     private int $numeroMagazine;
+    #[ORM\Column(type: "string", length: 10)]
+    private string $dateParution;
 
     public function __construct()
     {
@@ -35,20 +37,25 @@ class Magazine extends Media
     }
 
     /**
-     * @return \DateTime
+     * @return string
      */
-    public function getDatePublication(): \DateTime
+    public function getDateParution(): string
     {
-        return $this->datePublication;
+        return $this->dateParution;
     }
 
     /**
-     * @param \DateTime $datePublication
+     * @param string $dateParution
      */
-    public function setDatePublication(\DateTime $datePublication): void
+    public function setDateParution(string $dateParution): void
     {
-        $this->datePublication = $datePublication;
+        $this->dateParution = $dateParution;
     }
 
 
+
+    public function getType()
+    {
+        return strtolower(__CLASS__);
+    }
 }

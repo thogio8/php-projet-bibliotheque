@@ -11,7 +11,5 @@
 <body>
 <h1 id="titre">Bibliothèque</h1>
 <a href="adherent.php">Ajouter un adherent</a>
-<a href="livre.php">Ajouter un livre</a>
-<a href="magazine.php">Ajouter un magazine</a>
 </body>
 </html>

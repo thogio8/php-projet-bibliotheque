@@ -72,5 +72,10 @@ class Livre extends Media
         $this->nbPages = $nbPages;
     }
 
+    public function getType()
+    {
+        return strtolower(__CLASS__);
+    }
+
 
 }

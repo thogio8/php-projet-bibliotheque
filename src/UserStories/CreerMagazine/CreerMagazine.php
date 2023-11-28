@@ -4,16 +4,15 @@
 namespace App\UserStories\CreerMagazine;
 
 use App\Entites\Magazine;
+use App\Entites\StatutMedia;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use App\Services\Constantes;
 
 class CreerMagazine
 {
     private EntityManagerInterface $entityManager;
     private ValidatorInterface $validator;
-    private Constantes $constantes;
 
     /**
      * @param EntityManagerInterface $entityManager
@@ -23,7 +22,6 @@ class CreerMagazine
     {
         $this->entityManager = $entityManager;
         $this->validator = $validator;
-        $this->constantes = new Constantes();
     }
 
     /**
@@ -51,9 +49,10 @@ class CreerMagazine
         $magazine = new Magazine();
         $magazine->setTitre($requete->titre);
         $magazine->setNumeroMagazine($requete->numeroMagazine);
-        $magazine->setDateCreation($requete->dateCreation);
+        $magazine->setDateParution($requete->dateParution);
+        $magazine->setDateCreation((new \DateTime())->format('d/m/Y'));
         $magazine->setDureeEmprunt($magazine->getDureeEmprunt());
-        $magazine->setStatut($this->constantes->_STATUT_NOUVEAU);
+        $magazine->setStatut(StatutMedia::STATUT_NOUVEAU);
         $this->entityManager->persist($magazine);
         $this->entityManager->flush();
         return true;

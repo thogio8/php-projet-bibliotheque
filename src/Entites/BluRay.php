@@ -63,4 +63,8 @@ class BluRay extends Media
     }
 
 
+    public function getType()
+    {
+        // TODO: Implement getType() method.
+    }
 }
