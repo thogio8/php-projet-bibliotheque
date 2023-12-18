@@ -1,5 +1,6 @@
 <?php
 
+
 use App\UserStories\ListeNouveauxMedias\ListeNouveauxMedias;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -7,11 +8,9 @@ require "bootstrap.php";
 
 $validator = \Symfony\Component\Validator\Validation::createValidatorBuilder()->enableAnnotationMapping()->getValidator();
 
-$liste = new ListeNouveauxMedias($entityManager, $validator);
 
-dump($liste->execute());
+$empruntRequete = new \App\UserStories\EmprunterUnMedia\EmprunterUnMediaRequete(8,'AD-933300');
+$generateurNumeroEmprunt = new \App\Services\GenerateurNumeroEmprunt();
+$emprunt = new \App\UserStories\EmprunterUnMedia\EmprunterUnMedia($entityManager, $validator, $generateurNumeroEmprunt);
 
-$mediaDispo = new \App\UserStories\RendreDisponibleMedia\RendreDisponibleMedia($entityManager, $validator);
-$requete = new \App\UserStories\RendreDisponibleMedia\RendreDisponibleMediaRequete(8);
-
-$mediaDispo->execute($requete);
+$emprunt->execute($empruntRequete);

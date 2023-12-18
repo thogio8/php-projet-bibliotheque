@@ -2,16 +2,31 @@
 
 namespace App\Entites;
 
+use DateTime;
+use Doctrine\ORM\Mapping as ORM;
+
 require "vendor/autoload.php";
 
+#[ORM\Entity]
 class Emprunt
 {
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    #[ORM\Column(type: 'integer')]
     private int $id;
-    private int $numeroEmprunt;
-    private \DateTime $dateEmprunt;
-    private \DateTime $dateRetourEstimee;
-    private \DateTime $dateRetourReel;
+    #[ORM\Column(type: 'string')]
+    private string $numeroEmprunt;
+    #[ORM\Column(type: 'datetime')]
+    private DateTime $dateEmprunt;
+    #[ORM\Column(type: 'datetime')]
+    private DateTime $dateRetourEstimee;
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?DateTime $dateRetourReel;
+    #[ORM\ManyToOne(targetEntity: Adherent::class)]
+    #[ORM\JoinColumn(name: 'adherent', referencedColumnName: 'id')]
     private Adherent $adherent;
+    #[ORM\ManyToOne(targetEntity: Media::class)]
+    #[ORM\JoinColumn(name: 'media', referencedColumnName: 'id')]
     private Media $media;
 
     public function __construct()
@@ -29,7 +44,7 @@ class Emprunt
 
     public function estEnRetard(): bool
     {
-        if ($this->enCours() && $this->dateRetourEstimee <= new \DateTime()) {
+        if ($this->enCours() && $this->dateRetourEstimee <= new DateTime()) {
             return true;
         }
         return false;
@@ -62,55 +77,55 @@ class Emprunt
     /**
      * @param int $numeroEmprunt
      */
-    public function setNumeroEmprunt(int $numeroEmprunt): void
+    public function setNumeroEmprunt(string $numeroEmprunt): void
     {
         $this->numeroEmprunt = $numeroEmprunt;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getDateEmprunt(): \DateTime
+    public function getDateEmprunt(): DateTime
     {
         return $this->dateEmprunt;
     }
 
     /**
-     * @param \DateTime $dateEmprunt
+     * @param DateTime $dateEmprunt
      */
-    public function setDateEmprunt(\DateTime $dateEmprunt): void
+    public function setDateEmprunt(DateTime $dateEmprunt): void
     {
         $this->dateEmprunt = $dateEmprunt;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getDateRetourEstimee(): \DateTime
+    public function getDateRetourEstimee(): DateTime
     {
         return $this->dateRetourEstimee;
     }
 
     /**
-     * @param \DateTime $dateRetourEstimee
+     * @param DateTime $dateRetourEstimee
      */
-    public function setDateRetourEstimee(\DateTime $dateRetourEstimee): void
+    public function setDateRetourEstimee(DateTime $dateRetourEstimee): void
     {
         $this->dateRetourEstimee = $dateRetourEstimee;
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getDateRetourReel(): \DateTime
+    public function getDateRetourReel(): DateTime
     {
         return $this->dateRetourReel;
     }
 
     /**
-     * @param \DateTime $dateRetourReel
+     * @param ?DateTime $dateRetourReel
      */
-    public function setDateRetourReel(\DateTime $dateRetourReel): void
+    public function setDateRetourReel(?DateTime $dateRetourReel): void
     {
         $this->dateRetourReel = $dateRetourReel;
     }
