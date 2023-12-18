@@ -28,9 +28,8 @@ class ListeNouveauxMedias
             $medias[] = ["id" => $media->getId(), "titre" => $media->getTitre(), "statut" => $media->getStatut(), "dateCreation" => $media->getDateCreation(), "type" => $media->getType()];
         }
         usort($medias, function ($a, $b) {
-            return strtotime($b->getDateCreation()) - strtotime($a->getDateCreation());
+            return strtotime(str_replace('/', '-', $b['dateCreation'])) - strtotime(str_replace('/', '-',$a['dateCreation']));
         });
-
         return $medias;
     }
 }

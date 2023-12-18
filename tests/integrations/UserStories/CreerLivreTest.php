@@ -41,7 +41,7 @@ class CreerLivreTest extends TestCase{
 
     #[test]
     public function creerLivre_ValeursCorrectes_Vrai(){
-        $requete = new CreerLivreRequete("Titre", "172-16-180", "Moi", "21/11/2023", 100);
+        $requete = new CreerLivreRequete("Titre", "978-2-07-061275-8", "Moi", 100);
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
         $creerLivre = new CreerLivre($this->entityManager, $validator);
 
@@ -53,8 +53,29 @@ class CreerLivreTest extends TestCase{
     }
 
     #[test]
-    public function creerLivre_TitreNonRenseigne_Vrai(){
-        $requete = new CreerLivreRequete("", "172-16-180", "Moi", "21/11/2023", 100);
+    public function creerLivre_ISBNDejaExistant_Exception(){
+        $requete = new CreerLivreRequete("Titre", "978-2-07-061275-8", "Moi", 100);
+        $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
+        $creerLivre = new CreerLivre($this->entityManager, $validator);
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("L'ISBN appartient à un autre livre");
+        $creerLivre->execute($requete);
+        $creerLivre->execute($requete);
+    }
+
+    #[test]
+    public function creerLivre_ISBNNonValable_Exception(){
+        $requete = new CreerLivreRequete("Titre", "978-2-07-061275", "Moi", 100);
+        $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
+        $creerLivre = new CreerLivre($this->entityManager, $validator);
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("L'ISBN n'est pas valide");
+        $creerLivre->execute($requete);
+    }
+
+    #[test]
+    public function creerLivre_TitreNonRenseigne_Exception(){
+        $requete = new CreerLivreRequete("", "978-2-07-061275-8", "Moi", 100);
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
         $creerLivre = new CreerLivre($this->entityManager, $validator);
         $this->expectException(\Exception::class);
@@ -63,8 +84,8 @@ class CreerLivreTest extends TestCase{
     }
 
     #[test]
-    public function creerLivre_ISBNNonRenseigne_Vrai(){
-        $requete = new CreerLivreRequete("Titre", "", "Moi", "21/11/2023", 100);
+    public function creerLivre_ISBNNonRenseigne_Exception(){
+        $requete = new CreerLivreRequete("Titre", "", "Moi", 100);
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
         $creerLivre = new CreerLivre($this->entityManager, $validator);
         $this->expectException(\Exception::class);
@@ -73,8 +94,8 @@ class CreerLivreTest extends TestCase{
     }
 
     #[test]
-    public function creerLivre_AuteurNonRenseigne_Vrai(){
-        $requete = new CreerLivreRequete("Titre", "172-16-180", "", "21/11/2023", 100);
+    public function creerLivre_AuteurNonRenseigne_Exception(){
+        $requete = new CreerLivreRequete("Titre", "978-2-07-061275-8", "", 100);
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
         $creerLivre = new CreerLivre($this->entityManager, $validator);
         $this->expectException(\Exception::class);
@@ -83,22 +104,12 @@ class CreerLivreTest extends TestCase{
     }
 
     #[test]
-    public function creerLivre_NbPagesEgalA0_Vrai(){
-        $requete = new CreerLivreRequete("Titre", "172-16-180", "Moi", "21/11/2023", 0);
+    public function creerLivre_NbPagesEgalA0_Exception(){
+        $requete = new CreerLivreRequete("Titre", "978-2-07-061275-8", "Moi", 0);
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
         $creerLivre = new CreerLivre($this->entityManager, $validator);
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage("Le nombre de pages ne peut pas être inférieur ou égal 0");
-        $creerLivre->execute($requete);
-    }
-
-    #[test]
-    public function creerLivre_DateCreationNonRenseigne_Vrai(){
-        $requete = new CreerLivreRequete("Titre", "172-16-180", "Moi", "", 100);
-        $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
-        $creerLivre = new CreerLivre($this->entityManager, $validator);
-        $this->expectException(\Exception::class);
-        $this->expectExceptionMessage("La date de création est obligatoire");
         $creerLivre->execute($requete);
     }
 }

@@ -13,6 +13,10 @@ class CreerLivreRequete{
     #[Assert\NotBlank(
         message: "L'ISBN est obligatoire."
     )]
+    #[Assert\Isbn(
+        type: Assert\Isbn::ISBN_13,
+        message: "L'ISBN n'est pas valide.",
+    )]
     public ?string $isbn;
     #[Assert\NotBlank(
         message: "L'auteur est obligatoire."

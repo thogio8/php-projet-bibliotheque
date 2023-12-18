@@ -40,7 +40,7 @@ class CreerLivre
         // Vérifier que l'ISBN n'existe pas déjà
         $repository = $this->entityManager->getRepository(Livre::class);
         if($repository->findOneBy(["isbn" => $requete->isbn])){
-            throw new Exception("L'ISBN est déjà lié à un autre livre");
+            throw new Exception("L'ISBN appartient à un autre livre");
         }
 
         // Créer le livre

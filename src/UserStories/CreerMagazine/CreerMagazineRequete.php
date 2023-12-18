@@ -11,22 +11,22 @@ class CreerMagazineRequete
     #[Assert\NotBlank(
         message: "Le titre est obligatoire"
     )]
-    public string $titre;
+    public ?string $titre;
     #[Assert\NotBlank(
         message: "Le numéro de magazine est obligatoire"
     )]
-    public string $numeroMagazine;
+    public ?string $numeroMagazine;
     #[Assert\NotBlank(
         message: "La date de parution est obligatoire"
     )]
-    public string $dateParution;
+    public ?string $dateParution;
 
     /**
-     * @param string $titre
-     * @param string $numeroMagazine
-     * @param string $dateParution
+     * @param ?string $titre
+     * @param ?string $numeroMagazine
+     * @param ?string $dateParution
      */
-    public function __construct(string $titre, string $numeroMagazine, string $dateParution)
+    public function __construct(?string $titre, ?string $numeroMagazine, ?string $dateParution)
     {
         $this->titre = $titre;
         $this->numeroMagazine = $numeroMagazine;

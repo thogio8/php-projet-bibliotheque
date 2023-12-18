@@ -21,6 +21,7 @@ class "Blu-Ray" as BR{
 
 class "Magazine" as Ma{
     - numéroMagazine : entier
+    - dateParution : chaine
 }
 
 class "Adhérent" as A{

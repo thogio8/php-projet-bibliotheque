@@ -52,7 +52,7 @@ class CreerMagazineTest extends TestCase{
     }
 
     #[test]
-    public function creerMagazine_TitreNonRenseigne_Vrai(){
+    public function creerMagazine_TitreNonRenseigne_Exception(){
         $requete = new CreerMagazineRequete("", "572", "21/11/2023");
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
         $creerMagazine = new CreerMagazine($this->entityManager, $validator);
@@ -62,7 +62,7 @@ class CreerMagazineTest extends TestCase{
     }
 
     #[test]
-    public function creerMagazine_NumeroMagazineNonRenseigne_Vrai(){
+    public function creerMagazine_NumeroMagazineNonRenseigne_Exception(){
         $requete = new CreerMagazineRequete("Titre", "", "21/11/2023");
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
         $creerMagazine = new CreerMagazine($this->entityManager, $validator);
@@ -72,12 +72,23 @@ class CreerMagazineTest extends TestCase{
     }
 
     #[test]
-    public function creerMagazine_DateCreationNonRenseigne_Vrai(){
+    public function creerMagazine_NumeroMagazineDejaExistant_Exception(){
+        $requete = new CreerMagazineRequete("Titre", "5", "21/11/2023");
+        $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
+        $creerMagazine = new CreerMagazine($this->entityManager, $validator);
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage("Le numéro de magazine est déjà lié à un autre magazine");
+        $creerMagazine->execute($requete);
+        $creerMagazine->execute($requete);
+    }
+
+    #[test]
+    public function creerMagazine_DateParutionNonRenseigne_Exception(){
         $requete = new CreerMagazineRequete("Titre", "572", "");
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
         $creerMagazine = new CreerMagazine($this->entityManager, $validator);
         $this->expectException(\Exception::class);
-        $this->expectExceptionMessage("La date de création est obligatoire");
+        $this->expectExceptionMessage("La date de parution est obligatoire");
         $creerMagazine->execute($requete);
     }
 }

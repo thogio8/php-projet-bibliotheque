@@ -74,7 +74,7 @@ class Livre extends Media
 
     public function getType()
     {
-        return strtolower(__CLASS__);
+        return strtolower((new \ReflectionClass($this))->getShortName());
     }
 
 

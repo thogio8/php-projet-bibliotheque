@@ -51,11 +51,8 @@ class Magazine extends Media
     {
         $this->dateParution = $dateParution;
     }
-
-
-
     public function getType()
     {
-        return strtolower(__CLASS__);
+        return (new \ReflectionClass($this))->getShortName();
     }
 }

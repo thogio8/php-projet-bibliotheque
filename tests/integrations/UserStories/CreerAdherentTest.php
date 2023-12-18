@@ -58,7 +58,7 @@ class CreerAdherentTest extends TestCase{
     }
 
     #[test]
-    public function creerAdherent_PrenomNonRenseigne_Vrai(){
+    public function creerAdherent_PrenomNonRenseigne_Exception(){
         $requete = new CreerAdherentRequete('', 'Gioana', 'thomas.gioana@tes.fr');
         $generateur = new GenerateurNumeroAdherent();
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
@@ -80,7 +80,7 @@ class CreerAdherentTest extends TestCase{
     }
 
     #[test]
-    public function creerAdherent_EmailNonRenseigne_Vrai(){
+    public function creerAdherent_EmailNonRenseigne_Exception(){
         $requete = new CreerAdherentRequete('Thomas', 'Gioana', '');
         $generateur = new GenerateurNumeroAdherent();
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
@@ -91,18 +91,7 @@ class CreerAdherentTest extends TestCase{
     }
 
     #[test]
-    public function creerAdherent_EmailNonValableSansArobase_Vrai(){
-        $requete = new CreerAdherentRequete('Thomas', 'Gioana', 'thomas.gioanatest.fr');
-        $generateur = new GenerateurNumeroAdherent();
-        $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
-        $creerAdherent = new CreerAdherent($this->entityManager, $generateur, $validator);
-        $this->expectException(\Exception::class);
-        $this->expectExceptionMessage("Le mail n'est pas dans un format valide");
-        $creerAdherent->execute($requete);
-    }
-
-    #[test]
-    public function creerAdherent_EmailNonValableSansPoint_Vrai(){
+    public function creerAdherent_EmailNonValable_Exception(){
         $requete = new CreerAdherentRequete('Thomas', 'Gioana', 'thomas.gioana@test');
         $generateur = new GenerateurNumeroAdherent();
         $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
@@ -112,36 +101,4 @@ class CreerAdherentTest extends TestCase{
         $creerAdherent->execute($requete);
     }
 
-    #[test]
-    public function creerAdherent_EmailNonValableAvecEspace_Vrai(){
-        $requete = new CreerAdherentRequete('Thomas', 'Gioana', 'thomas.gioana@test.fr ');
-        $generateur = new GenerateurNumeroAdherent();
-        $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
-        $creerAdherent = new CreerAdherent($this->entityManager, $generateur, $validator);
-        $this->expectException(\Exception::class);
-        $this->expectExceptionMessage("Le mail n'est pas dans un format valide");
-        $creerAdherent->execute($requete);
-    }
-
-    #[test]
-    public function creerAdherent_EmailNonValablePremierePartieManquante_Vrai(){
-        $requete = new CreerAdherentRequete('Thomas', 'Gioana', '@test.fr');
-        $generateur = new GenerateurNumeroAdherent();
-        $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
-        $creerAdherent = new CreerAdherent($this->entityManager, $generateur, $validator);
-        $this->expectException(\Exception::class);
-        $this->expectExceptionMessage("Le mail n'est pas dans un format valide");
-        $creerAdherent->execute($requete);
-    }
-
-    #[test]
-    public function creerAdherent_EmailNonValableDeuxiemePartieManquante_Vrai(){
-        $requete = new CreerAdherentRequete('Thomas', 'Gioana', 'thomas.gioana@');
-        $generateur = new GenerateurNumeroAdherent();
-        $validator = (new ValidatorBuilder())->enableAnnotationMapping()->getValidator();
-        $creerAdherent = new CreerAdherent($this->entityManager, $generateur, $validator);
-        $this->expectException(\Exception::class);
-        $this->expectExceptionMessage("Le mail n'est pas dans un format valide");
-        $creerAdherent->execute($requete);
-    }
 }

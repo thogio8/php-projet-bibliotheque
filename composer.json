@@ -14,7 +14,8 @@
         "symfony/cache": "^6.3",
         "vlucas/phpdotenv": "^5.5",
         "symfony/validator": "^6.3",
-        "mnapoli/silly": "^1.8"
+        "mnapoli/silly": "^1.8",
+        "fakerphp/faker": "^1.23"
     },
     "autoload": {
         "psr-4": {

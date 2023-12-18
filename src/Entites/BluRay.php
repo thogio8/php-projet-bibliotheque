@@ -65,6 +65,6 @@ class BluRay extends Media
 
     public function getType()
     {
-        // TODO: Implement getType() method.
+        return strtolower((new \ReflectionClass($this))->getShortName());
     }
 }

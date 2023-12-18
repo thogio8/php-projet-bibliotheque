@@ -21,7 +21,7 @@ abstract class Media
     protected int $dureeEmprunt;
     #[ORM\Column(type : "string", length: 20)]
     protected string $statut;
-    #[ORM\Column(type: 'string', length: 10)]
+    #[ORM\Column(type: "string", length: 10)]
     protected string $dateCreation;
 
     public function __construct()
