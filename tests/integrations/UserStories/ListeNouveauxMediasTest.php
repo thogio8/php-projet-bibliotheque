@@ -7,8 +7,12 @@ use App\UserStories\CreerLivre\CreerLivre;
 use App\UserStories\CreerLivre\CreerLivreRequete;
 use App\UserStories\CreerMagazine\CreerMagazine;
 use App\UserStories\CreerMagazine\CreerMagazineRequete;
+use App\UserStories\ListeNouveauxMedias\ListeNouveauxMedias;
+use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\ORMSetup;
+use Doctrine\ORM\Tools\SchemaTool;
 use Faker\Factory;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -56,11 +60,16 @@ class ListeNouveauxMediasTest extends TestCase{
 
     #[test]
     public function listeNouveauxMedias_DateCreationDecroissante_Vrai(){
-        $repository = $this->entityManager->getRepository(Media::class);
-        for($i = 1; $i < count($repository); $i++){
-            if(strtotime($repository[$i]["dateCreation"]) > strtotime($repository[$i + 1]["dateCreation"])){
-                $this->assertTrue(strtotime($repository[$i]["dateCreation"]) > strtotime($repository[$i + 1]["dateCreation"]));
-            }
+        $listeMedia = (new ListeNouveauxMedias($this->entityManager))->execute();
+        foreach ($listeMedia as $media){
+            $listeDateCreation[] = $media['dateCreation'];
         }
+        $dateCreation = $listeDateCreation;
+        usort($dateCreation, function ($element1, $element2) {
+            $datetime1 = strtotime(str_replace('/', '-', $element1));
+            $datetime2 = strtotime(str_replace('/', '-', $element2));
+            return $datetime2 - $datetime1;
+        });
+        $this->assertEquals($dateCreation, $listeDateCreation);
     }
 }

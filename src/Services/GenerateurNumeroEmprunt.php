@@ -10,10 +10,10 @@ class GenerateurNumeroEmprunt
 {
     public function execute(EntityManager $entityManager) : string {
             // Récupérer le dernier emprunt enregistré
-            $dernierEmprunt = $entityManager->getRepository(Emprunt::class)->findOneBy(['id' => 'DESC']);
+            $dernierEmprunt = $entityManager->getRepository(Emprunt::class)->findOneBy([],['id' => 'DESC']);
 
             // Si aucun emprunt n'a encore été enregistré, définir le numéro d'emprunt à "EM-000000001"
-            if (!$dernierEmprunt) {
+            if ($dernierEmprunt === null) {
                 return 'EM-000000001';
             }
 

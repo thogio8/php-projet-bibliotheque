@@ -20,6 +20,7 @@ class EmprunterUnMedia
     /**
      * @param EntityManagerInterface $entityManager
      * @param ValidatorInterface $validator
+     * @param GenerateurNumeroEmprunt $generateurNumeroEmprunt
      */
     public function __construct(EntityManagerInterface $entityManager, ValidatorInterface $validator, GenerateurNumeroEmprunt $generateurNumeroEmprunt)
     {
@@ -27,6 +28,8 @@ class EmprunterUnMedia
         $this->validator = $validator;
         $this->generateurNumeroEmprunt = $generateurNumeroEmprunt;
     }
+
+
 
     public function execute(EmprunterUnMediaRequete $requete) : bool{
         //Valider les données en entrée
@@ -47,6 +50,7 @@ class EmprunterUnMedia
             throw new Exception("Le média n'existe pas");
         }
 
+
         //Vérifier que le média est disponible
         if($media->getStatut() !== StatutMedia::STATUT_DISPONIBLE){
             throw new Exception("Le média n'est pas disponible à l'emprunt");
@@ -64,16 +68,23 @@ class EmprunterUnMedia
             throw new Exception("L'adhésion n'est plus valide");
         }
 
-        $emprunt = new Emprunt();
-        $emprunt->setNumeroEmprunt($this->generateurNumeroEmprunt->execute($this->entityManager));
-        $emprunt->setDateEmprunt(new \DateTime());
-        $emprunt->setDateRetourEstimee((new \DateTime())->modify("+{$media->getDureeEmprunt()} days"));
-        $emprunt->setAdherent($adherent);
-        $emprunt->setMedia($media);
-        $media->setStatut(StatutMedia::STATUT_EMPRUNTE);
-        $this->entityManager->persist($emprunt);
-        $this->entityManager->persist($media);
-        $this->entityManager->flush();
+        $this->entityManager->getConnection()->beginTransaction();
+        try{
+            $emprunt = new Emprunt();
+            $emprunt->setNumeroEmprunt($this->generateurNumeroEmprunt->execute($this->entityManager));
+            $emprunt->setDateEmprunt(new \DateTime());
+            $emprunt->setDateRetourEstimee((new \DateTime())->modify("+{$media->getDureeEmprunt()} days"));
+            $emprunt->setAdherent($adherent);
+            $emprunt->setMedia($media);
+            $media->setStatut(StatutMedia::STATUT_EMPRUNTE);
+            $this->entityManager->persist($emprunt);
+            $this->entityManager->flush();
+            $this->entityManager->getConnection()->commit();
+        }catch(Exception $e){
+            $this->entityManager->getConnection()->rollBack();
+            throw $e;
+        }
+
         return true;
     }
 }

@@ -9,7 +9,7 @@ require "bootstrap.php";
 $validator = \Symfony\Component\Validator\Validation::createValidatorBuilder()->enableAnnotationMapping()->getValidator();
 
 
-$empruntRequete = new \App\UserStories\EmprunterUnMedia\EmprunterUnMediaRequete(8,'AD-933300');
+$empruntRequete = new \App\UserStories\EmprunterUnMedia\EmprunterUnMediaRequete(10,'AD-933300');
 $generateurNumeroEmprunt = new \App\Services\GenerateurNumeroEmprunt();
 $emprunt = new \App\UserStories\EmprunterUnMedia\EmprunterUnMedia($entityManager, $validator, $generateurNumeroEmprunt);
 

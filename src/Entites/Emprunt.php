@@ -69,7 +69,7 @@ class Emprunt
     /**
      * @return int
      */
-    public function getNumeroEmprunt(): int
+    public function getNumeroEmprunt(): string
     {
         return $this->numeroEmprunt;
     }

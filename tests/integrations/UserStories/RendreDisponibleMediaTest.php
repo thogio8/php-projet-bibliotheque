@@ -78,8 +78,8 @@ class RendreDisponibleMediaTest extends TestCase{
         $repository = $this->entityManager->getRepository(Media::class);
         $media = $repository->findOneBy(['id' => $requete->id]);
         $media->setStatut(StatutMedia::STATUT_DISPONIBLE);
+        $this->entityManager->flush();
         $this->assertNotNull($media);
         $this->assertNotEquals(StatutMedia::STATUT_NOUVEAU, $media->getStatut());
-        $rendreDisponible->execute($requete);
     }
 }

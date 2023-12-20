@@ -79,10 +79,11 @@ class EmprunterUnMediaTest extends TestCase{
         $emprunterMedia = new EmprunterUnMedia($this->entityManager, $this->validator, $this->generateurNumeroEmprunt);
         $numeroAdherent = ($this->entityManager->getRepository(Adherent::class)->findOneBy(['id' => 1]))->getNumeroAdherent();
         $media = $this->entityManager->getRepository(Media::class)->findOneBy(['id' => 1]);
+        $mediaDispoRequete = new \App\UserStories\RendreDisponibleMedia\RendreDisponibleMediaRequete(1);
+        $mediaDispo = new App\UserStories\RendreDisponibleMedia\RendreDisponibleMedia($this->entityManager,$this->validator);
+        $mediaDispo->execute($mediaDispoRequete);
         $requete = new EmprunterUnMediaRequete($media->getId(), $numeroAdherent);
-
         $emprunterMedia->execute($requete);
         $this->assertEquals(StatutMedia::STATUT_EMPRUNTE, $media->getStatut());
     }
-
 }
