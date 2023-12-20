@@ -21,7 +21,7 @@ class Emprunt
     #[ORM\Column(type: 'datetime')]
     private DateTime $dateRetourEstimee;
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private ?DateTime $dateRetourReel;
+    private ?DateTime $dateRetourReel = null;
     #[ORM\ManyToOne(targetEntity: Adherent::class)]
     #[ORM\JoinColumn(name: 'adherent', referencedColumnName: 'id')]
     private Adherent $adherent;
@@ -117,9 +117,12 @@ class Emprunt
     /**
      * @return DateTime
      */
-    public function getDateRetourReel(): DateTime
+    public function getDateRetourReel(): ?DateTime
     {
-        return $this->dateRetourReel;
+        if($this->dateRetourReel !== null) {
+            return $this->dateRetourReel;
+        }
+        return null;
     }
 
     /**
